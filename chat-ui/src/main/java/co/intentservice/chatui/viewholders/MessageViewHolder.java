@@ -61,8 +61,8 @@ public class MessageViewHolder {
 
     public void setBackground(int messageType) {
 
-        int chatMessageBackground = ContextCompat.getColor(context, R.color.cardview_light_background);
-        int bubbleBackground = ContextCompat.getColor(context, R.color.cardview_light_background);
+        int chatMessageBackground = ContextCompat.getColor(context, android.support.v7.cardview.R.color.cardview_light_background);
+        int bubbleBackground = ContextCompat.getColor(context, android.support.v7.cardview.R.color.cardview_light_background);
 
         switch (messageType) {
             case STATUS_RECEIVED:
