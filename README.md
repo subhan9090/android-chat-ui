@@ -28,7 +28,7 @@ Then add the dependency
 
 ```
 dependencies {
-	compile 'com.github.timigod:android-chat-ui:v0.1.4'
+	implementation 'com.github.subhan9090:android-chat-ui:v0.1'
 }
 ```
 
@@ -134,6 +134,16 @@ chatView.setTypingListener(new ChatView.TypingListener(){
 });
 ```
 
+### Typing Indicator
+
+When you receive socket from other user that it's typing you can show and hide the Typing Indicator
+In the ChatView.
+
+```
+                chatView.showTypingIndicator("User Name");
+                chatView.hideTypingIndicator("User Name");
+```
+
 ### TODO
 This is list of things that are in the works for this library:
 
@@ -155,3 +165,5 @@ We welcome any and all contributions, code cleanups and feature requests.
 1. Check for open issues or open a fresh issue to start a discussion around a feature idea or a bug.
 2. Fork the repository on GitHub to start making your changes to the master branch (or branch off of it).
 3. Send a pull request and bug the maintainer until it gets merged and published. :).
+
+[![](https://jitpack.io/v/subhan9090/android-chat-ui.svg)](https://jitpack.io/#subhan9090/android-chat-ui)
