@@ -71,6 +71,6 @@ public class ChatMessage {
     }
 
     public enum Type {
-        SENT, RECEIVED
+        SENT, RECEIVED, TYPING
     }
 }

@@ -37,4 +37,15 @@ public class ViewBuilder implements ViewBuilderInterface {
 
     }
 
+    /**
+     * Returns a MessageView object which is used to display typing to the chat-ui
+     * @param context A context that is used to instantiate the view.
+     * @return        MessageView object for displaying sent messages.
+     */
+    public MessageView buildDotView(Context context) {
+        MessageView view = new ItemDotView(context);
+        return view;
+
+    }
+
 }

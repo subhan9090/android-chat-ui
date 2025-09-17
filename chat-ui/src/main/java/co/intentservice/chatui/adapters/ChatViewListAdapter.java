@@ -24,6 +24,7 @@ public class ChatViewListAdapter extends BaseAdapter {
 
     public final int STATUS_SENT = 0;
     public final int STATUS_RECEIVED = 1;
+    public final int STATUS_TYPING = 2;
 
     private int backgroundRcv, backgroundSend;
     private int bubbleBackgroundRcv, bubbleBackgroundSend;
@@ -69,7 +70,7 @@ public class ChatViewListAdapter extends BaseAdapter {
 
     @Override
     public int getViewTypeCount() {
-        return 2;
+        return 3;
     }
 
     @Override
@@ -84,6 +85,9 @@ public class ChatViewListAdapter extends BaseAdapter {
                 case STATUS_RECEIVED:
                     convertView = viewBuilder.buildRecvView(context);
                     break;
+                case STATUS_TYPING:
+                    convertView = viewBuilder.buildDotView(context);
+                    break;
             }
 
             holder = new MessageViewHolder(convertView, backgroundRcv, backgroundSend, bubbleBackgroundRcv, bubbleBackgroundSend);
@@ -92,13 +96,15 @@ public class ChatViewListAdapter extends BaseAdapter {
             holder = (MessageViewHolder) convertView.getTag();
         }
 
-        holder.setMessage(chatMessages.get(position).getMessage());
-        holder.setTimestamp(chatMessages.get(position).getFormattedTime());
-        holder.setElevation(bubbleElevation);
-        holder.setBackground(type);
-        String sender = chatMessages.get(position).getSender();
-        if (sender != null) {
-            holder.setSender(sender);
+        if (type != STATUS_TYPING) {
+            holder.setMessage(chatMessages.get(position).getMessage());
+            holder.setTimestamp(chatMessages.get(position).getFormattedTime());
+            holder.setElevation(bubbleElevation);
+            holder.setBackground(type);
+            String sender = chatMessages.get(position).getSender();
+            if (sender != null) {
+                holder.setSender(sender);
+            }
         }
 
         return convertView;
@@ -114,9 +120,17 @@ public class ChatViewListAdapter extends BaseAdapter {
         notifyDataSetChanged();
     }
 
+    public ArrayList<ChatMessage> getList() {
+        return chatMessages;
+    }
+
+    /**
+     * Removes message at position safely on UI thread
+     */
     public void removeMessage(int position) {
-        if (this.chatMessages.size() > position) {
-            this.chatMessages.remove(position);
+        if (position >= 0 && position < chatMessages.size()) {
+            chatMessages.remove(position);
+            notifyDataSetChanged();
         }
     }
 

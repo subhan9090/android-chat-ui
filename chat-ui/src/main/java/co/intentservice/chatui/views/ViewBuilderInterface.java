@@ -26,4 +26,11 @@ public interface ViewBuilderInterface {
      */
     MessageView buildSentView(Context context);
 
+    /**
+     * Returns a MessageView object which is used to display Dots to the chat-ui.
+     * @param context A context that is used to instantiate the view.
+     * @return        MessageView object for displaying dots item.
+     */
+    MessageView buildDotView(Context context);
+
 }

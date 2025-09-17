@@ -404,6 +404,60 @@ public class ChatView extends RelativeLayout {
     }
 
 
+    /**
+     * Shows typing indicator for a specific sender (other user)
+     */
+    public void showTypingIndicator(String sender) {
+        chatListView.post(() -> {
+            ArrayList<ChatMessage> messages = chatViewListAdapter.getList();
+
+            // Avoid duplicates
+            for (ChatMessage msg : messages) {
+                if (msg.getType() == ChatMessage.Type.TYPING && sender.equals(msg.getSender())) {
+                    return; // already showing
+                }
+            }
+
+            ChatMessage typingMessage = new ChatMessage(
+                    "",
+                    System.currentTimeMillis(),
+                    ChatMessage.Type.TYPING,
+                    sender
+            );
+
+            chatViewListAdapter.addMessage(typingMessage);
+            scrollToBottom();
+        });
+    }
+
+    /**
+     * Removes typing indicator for a specific sender
+     */
+    public void hideTypingIndicator(String sender) {
+        chatListView.post(() -> {
+            ArrayList<ChatMessage> messages = chatViewListAdapter.getList();
+
+            for (int i = messages.size() - 1; i >= 0; i--) {
+                ChatMessage msg = messages.get(i);
+                if (msg.getType() == ChatMessage.Type.TYPING && sender.equals(msg.getSender())) {
+                    chatViewListAdapter.removeMessage(i);
+                    break; // remove only the last typing indicator for this sender
+                }
+            }
+        });
+    }
+
+    /**
+     * Scroll ListView to bottom
+     */
+    private void scrollToBottom() {
+        chatListView.post(() -> {
+            int count = chatViewListAdapter.getCount();
+            if (count > 0) {
+                chatListView.setSelection(count - 1);
+            }
+        });
+    }
     public interface TypingListener {
 
         void userStartedTyping();
