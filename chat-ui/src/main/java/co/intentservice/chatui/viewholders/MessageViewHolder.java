@@ -1,10 +1,10 @@
 package co.intentservice.chatui.viewholders;
 
+import static androidx.core.content.ContextCompat.getColor;
+
 import android.content.Context;
-import android.support.v4.content.ContextCompat;
 import android.view.View;
 
-import co.intentservice.chatui.R;
 import co.intentservice.chatui.views.MessageView;
 
 /**
@@ -61,8 +61,8 @@ public class MessageViewHolder {
 
     public void setBackground(int messageType) {
 
-        int chatMessageBackground = ContextCompat.getColor(context, android.support.v7.cardview.R.color.cardview_light_background);
-        int bubbleBackground = ContextCompat.getColor(context, android.support.v7.cardview.R.color.cardview_light_background);
+        int chatMessageBackground = getColor(context, androidx.cardview.R.color.cardview_light_background);
+        int bubbleBackground = getColor(context, androidx.cardview.R.color.cardview_light_background);
 
         switch (messageType) {
             case STATUS_RECEIVED:

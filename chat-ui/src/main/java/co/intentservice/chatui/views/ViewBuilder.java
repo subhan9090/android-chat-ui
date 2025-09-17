@@ -1,7 +1,6 @@
 package co.intentservice.chatui.views;
 
 import android.content.Context;
-import android.view.View;
 
 /**
  * Builder to create views for the Chat Client that are used to display sent and

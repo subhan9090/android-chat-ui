@@ -1,11 +1,11 @@
 package co.intentservice.chatui;
 
+import static androidx.core.content.ContextCompat.getColor;
+
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.widget.CardView;
 import android.text.Editable;
 import android.text.InputType;
 import android.text.TextUtils;
@@ -21,6 +21,8 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import androidx.cardview.widget.CardView;
 
 import java.util.ArrayList;
 
@@ -141,8 +143,8 @@ public class ChatView extends RelativeLayout {
     }
 
     private void getAttributesForChatMessageRow() {
-        backgroundRcv = attributes.getColor(R.styleable.ChatView_backgroundRcv, ContextCompat.getColor(context, R.color.default_chat_message_background_color_rcv));
-        backgroundSend = attributes.getColor(R.styleable.ChatView_backgroundSend, ContextCompat.getColor(context, R.color.default_chat_message_background_color_send));
+        backgroundRcv = attributes.getColor(R.styleable.ChatView_backgroundRcv, getColor(context, R.color.default_chat_message_background_color_rcv));
+        backgroundSend = attributes.getColor(R.styleable.ChatView_backgroundSend, getColor(context, R.color.default_chat_message_background_color_send));
     }
 
     private void getAttributesForBubbles() {
@@ -150,8 +152,8 @@ public class ChatView extends RelativeLayout {
         int elevation = attributes.getInt(R.styleable.ChatView_bubbleElevation, ELEVATED);
         bubbleElevation = elevation == ELEVATED ? dip4 : 0;
 
-        bubbleBackgroundRcv = attributes.getColor(R.styleable.ChatView_bubbleBackgroundRcv, ContextCompat.getColor(context, R.color.default_bubble_color_rcv));
-        bubbleBackgroundSend = attributes.getColor(R.styleable.ChatView_bubbleBackgroundSend, ContextCompat.getColor(context, R.color.default_bubble_color_send));
+        bubbleBackgroundRcv = attributes.getColor(R.styleable.ChatView_bubbleBackgroundRcv, getColor(context, R.color.default_bubble_color_rcv));
+        bubbleBackgroundSend = attributes.getColor(R.styleable.ChatView_bubbleBackgroundSend, getColor(context, R.color.default_bubble_color_send));
     }
 
 
@@ -226,8 +228,8 @@ public class ChatView extends RelativeLayout {
 
     private void setInputTextDefaults() {
         inputTextSize = context.getResources().getDimensionPixelSize(R.dimen.default_input_text_size);
-        inputTextColor = ContextCompat.getColor(context, R.color.black);
-        inputHintColor = ContextCompat.getColor(context, R.color.main_color_gray);
+        inputTextColor = getColor(context, R.color.black);
+        inputHintColor = getColor(context, R.color.main_color_gray);
         setInputHint();
     }
 
