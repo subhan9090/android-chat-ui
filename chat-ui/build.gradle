@@ -62,12 +62,13 @@ afterEvaluate {
     publishing {
         publications {
             release(MavenPublication) {
-                // Instead of from components.release, publish the AAR manually
                 groupId = 'com.github.subhan9090'
                 artifactId = 'android-chat-ui'
-                version = 'v0.1.0'
+                version = 'v0.1.2'
 
-                artifact("$buildDir/outputs/aar/${project.name}-release.aar")
+                artifact("$buildDir/outputs/aar/${project.name}-release.aar") {
+                    builtBy tasks.named("bundleReleaseAar")
+                }
 
                 pom {
                     name.set("android-chat-ui")
@@ -84,6 +85,7 @@ afterEvaluate {
         }
     }
 }
+
 java {
     toolchain {
         languageVersion = JavaLanguageVersion.of(17)
