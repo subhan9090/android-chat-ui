@@ -26,11 +26,11 @@ ext {
 }
 
 android {
-     namespace "co.intentservice.chatui"
-    compileSdkVersion 34
+    namespace "co.intentservice.chatui"
+    compileSdk = 34
     defaultConfig {
-        minSdk 23
-        targetSdk 34
+        minSdk = 21
+        targetSdk = 34
         versionCode 1
         versionName "1.0"
     }
