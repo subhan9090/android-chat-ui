@@ -29,8 +29,8 @@ android {
     namespace "co.intentservice.chatui"
     compileSdk = 34
     defaultConfig {
-        minSdk = 21
-        targetSdk = 34
+        minSdk 23
+        targetSdkVersion 34
         versionCode 1
         versionName "1.0"
     }
@@ -41,7 +41,6 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-    ndkVersion '23.1.7779620'
 }
 
 dependencies {
@@ -62,6 +61,7 @@ afterEvaluate {
     publishing {
         publications {
             release(MavenPublication) {
+                // Instead of from components.release, publish the AAR manually
                 groupId = 'com.github.subhan9090'
                 artifactId = 'android-chat-ui'
                 version = 'v0.1.2'
@@ -85,7 +85,6 @@ afterEvaluate {
         }
     }
 }
-
 java {
     toolchain {
         languageVersion = JavaLanguageVersion.of(17)
